@@ -11,7 +11,48 @@
         }
         h1 {
             font-size: 24px;
+            margin-bottom: 20px;a<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bible Gateway Verse of the Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
             margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verse of the Day</h1>
+
+    <script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
+    <script src="https://www.biblegateway.com/votd/get/?format=json&version=KJV&callback=BG.votdWriteCallback"></script>
+
+    <script>
+        // Observe mutations in the body
+        const observer = new MutationObserver(function(mutations, observer) {
+            const poweredBy = document.querySelector('a[href*="biblegateway.com"]');
+            if (poweredBy) {
+                poweredBy.parentNode.removeChild(poweredBy);
+                observer.disconnect(); // Stop observing after removing
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+
+    <noscript>
+        <iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=KJV">View Verse of the Day</iframe>
+    </noscript>
+</body>
+</html>
+
         }
     </style>
 </head>
