@@ -11,12 +11,12 @@
               background-color: #f9f9f9;
           }
           h1 {
-            font-size:28px;
+            font-size:32px;
             margin-bottom:20px;
             color:#333;
           }
           .verse-text {
-            font-size:21px;
+            font-size:22px;
             margin:30px;
             max-width:800px;
             color: #000;
@@ -36,11 +36,12 @@
     <footer>Powered by <a href="https://www.biblegateway.com/" target="_blank">BibleGateway.com</a></footer>
 
     <script>
-        fetch("https://www.biblegateway.com/votd/get/?format=json&version=KJV")
+        const url = "https://www.biblegateway.com/votd/get/?format=json&version=KJV";
+        fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(url))
             .then(response => response.json())
             .then(data => {
-                // Only use data.text (it already includes all formatting)
-                document.getElementById("verse-text").innerHTML = data.text;
+                const parsed = JSON.parse(data.contents);
+                document.getElementById("verse-text").innerHTML = parsed.text;
             })
             .catch(err => {
                 document.getElementById("verse-text").innerText = "Unable to load verse.";
@@ -48,4 +49,5 @@
             });
     </script>
 </body>
+
 </html>
