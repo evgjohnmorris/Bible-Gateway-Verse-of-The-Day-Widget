@@ -29,10 +29,23 @@
           }
 
     </style>
+</head>
+<body>
+    <h1>Verse of the Day</h1>
+    <div class="verse-text" id="verse-text">Loading verse...</div>
+    <footer>Powered by <a href="https://www.biblegateway.com/" target="_blank">BibleGateway.com</a></footer>
 
-<script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
-<script src="https://www.biblegateway.com/votd/get/?format=json&version=KJV&callback=BG.votdWriteCallback"></script>
-<!-- alternative for no javascript -->
-<noscript>
-<iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=KJV">View Verse of the Day</iframe>
-</noscript>
+    <script>
+        fetch("https://www.biblegateway.com/votd/get/?format=json&version=KJV")
+            .then(response => response.json())
+            .then(data => {
+                // Only use data.text (it already includes all formatting)
+                document.getElementById("verse-text").innerHTML = data.text;
+            })
+            .catch(err => {
+                document.getElementById("verse-text").innerText = "Unable to load verse.";
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
