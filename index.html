@@ -1,53 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bible Gateway Verse of the Day</title>
-    <style>
-        body {
-              font-family: Georgia, sans-serif;
-              text-align: center;
-              padding: 20px;
-              background-color: #f9f9f9;
-          }
-          h1 {
-            font-size:32px;
-            margin-bottom:20px;
-            color:#333;
-          }
-          .verse-text {
-            font-size:22px;
-            margin:30px;
-            max-width:800px;
-            color: #000;
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="300" height="190" id="votd" align="middle">
+<param name="allowScriptAccess" value="sameDomain" />
+<param name="movie" value="http://www.biblegateway.com/usage/votd/votd.swf" />
+<param name="quality" value="high" />
+<param name="bgcolor" value="#ffffff" />
+<embed src="http://www.biblegateway.com/usage/votd/votd.swf" quality="high" bgcolor="#ffffff" width="300" height="190" name="votd" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object>
 
-          }
-          footer {
-            margin-top:40px;
-            font-size:16px;
-            color: #777;
-          }
-
-    </style>
-</head>
-<body>
-    <h1>Verse of the Day</h1>
-    <div class="verse-text" id="verse-text">Loading verse...</div>
-    <footer>Powered by <a href="https://www.biblegateway.com/" target="_blank">BibleGateway.com</a></footer>
-
-    <script>
-        const url = "https://www.biblegateway.com/votd/get/?format=json&version=KJV";
-        fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(url))
-            .then(response => response.json())
-            .then(data => {
-                const parsed = JSON.parse(data.contents);
-                document.getElementById("verse-text").innerHTML = parsed.text;
-            })
-            .catch(err => {
-                document.getElementById("verse-text").innerText = "Unable to load verse.";
-                console.error(err);
-            });
-    </script>
-</body>
-
-</html>
+For MySpace
+(& any others that don't support the <object> tag)
+<embed src="http://www.biblegateway.com/usage/votd/votd.swf" quality="high" bgcolor="#ffffff" width="300" height="190" name="votd" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
