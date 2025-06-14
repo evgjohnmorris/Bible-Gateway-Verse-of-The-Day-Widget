@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Bible Gateway Verse of the Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Verse of the Day</h1>
+
+    <div id="votd"></div>
+
     <script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
     <script src="https://www.biblegateway.com/votd/get/?format=json&version=KJV&callback=BG.votdWriteCallback"></script>
+
+    <script>
+        // Wait a bit for BibleGateway to load content
+        setTimeout(function() {
+            // Optional: move the content into your div
+            const votdContainer = document.querySelector('#votd');
+            const bodyChildren = Array.from(document.body.children);
+            bodyChildren.forEach(child => {
+                if (child !== votdContainer && child.tagName !== 'H1' && child.tagName !== 'SCRIPT') {
+                    votdContainer.appendChild(child);
+                }
+            });
+
+            // Remove "Powered by" text (find the link)
+            const poweredBy = document.querySelector('a[href*="biblegateway.com"]');
+            if (poweredBy && poweredBy.parentNode) {
+                poweredBy.parentNode.removeChild(poweredBy);
+            }
+        }, 1000); // Delay gives time for BibleGateway's script to execute
+    </script>
+
     <noscript>
         <iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=KJV">View Verse of the Day</iframe>
     </noscript>
