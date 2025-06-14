@@ -1,11 +1,6 @@
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="300" height="190" id="votd" align="middle">
-<param name="allowScriptAccess" value="sameDomain" />
-<param name="movie" value="http://www.biblegateway.com/usage/votd/votd.swf" />
-<param name="quality" value="high" />
-<param name="bgcolor" value="#ffffff" />
-<embed src="http://www.biblegateway.com/usage/votd/votd.swf" quality="high" bgcolor="#ffffff" width="300" height="190" name="votd" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-</object>
-
-For MySpace
-(& any others that don't support the <object> tag)
-<embed src="http://www.biblegateway.com/usage/votd/votd.swf" quality="high" bgcolor="#ffffff" width="300" height="190" name="votd" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+<script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
+<script src="https://www.biblegateway.com/votd/get/?format=json&version=KJV&callback=BG.votdWriteCallback"></script>
+<!-- alternative for no javascript -->
+<noscript>
+<iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=KJV">View Verse of the Day</iframe>
+</noscript>
