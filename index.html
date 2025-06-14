@@ -10,82 +10,37 @@
             padding: 20px;
         }
         h1 {
-            font-size: 24px;
-            margin-bottom: 20px;a<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bible Gateway Verse of the Day</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 20px;
         }
-    </style>
-</head>
-<body>
-    <h1>Verse of the Day</h1>
-
-    <script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
-    <script src="https://www.biblegateway.com/votd/get/?format=json&version=KJV&callback=BG.votdWriteCallback"></script>
-
-    <script>
-        // Observe mutations in the body
-        const observer = new MutationObserver(function(mutations, observer) {
-            const poweredBy = document.querySelector('a[href*="biblegateway.com"]');
-            if (poweredBy) {
-                poweredBy.parentNode.removeChild(poweredBy);
-                observer.disconnect(); // Stop observing after removing
-            }
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-    </script>
-
-    <noscript>
-        <iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=KJV">View Verse of the Day</iframe>
-    </noscript>
-</body>
-</html>
-
+        .verse-text {
+            font-size: 22px;
+            margin: 20px 0;
+        }
+        .verse-reference {
+            font-size: 18px;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <h1>Verse of the Day</h1>
-
-    <div id="votd"></div>
-
-    <script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
-    <script src="https://www.biblegateway.com/votd/get/?format=json&version=KJV&callback=BG.votdWriteCallback"></script>
+    <div id="verse-container">
+        <div class="verse-text" id="verse-text">Loading verse...</div>
+        <div class="verse-reference" id="verse-reference"></div>
+    </div>
 
     <script>
-        // Wait a bit for BibleGateway to load content
-        setTimeout(function() {
-            // Optional: move the content into your div
-            const votdContainer = document.querySelector('#votd');
-            const bodyChildren = Array.from(document.body.children);
-            bodyChildren.forEach(child => {
-                if (child !== votdContainer && child.tagName !== 'H1' && child.tagName !== 'SCRIPT') {
-                    votdContainer.appendChild(child);
-                }
+        fetch("https://www.biblegateway.com/votd/get/?format=json&version=KJV")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("verse-text").innerHTML = `"${data.text}"`;
+                document.getElementById("verse-reference").innerHTML = `— ${data.reference} (${data.version})`;
+            })
+            .catch(err => {
+                document.getElementById("verse-text").innerText = "Unable to load verse.";
+                console.error(err);
             });
-
-            // Remove "Powered by" text (find the link)
-            const poweredBy = document.querySelector('a[href*="biblegateway.com"]');
-            if (poweredBy && poweredBy.parentNode) {
-                poweredBy.parentNode.removeChild(poweredBy);
-            }
-        }, 1000); // Delay gives time for BibleGateway's script to execute
     </script>
-
-    <noscript>
-        <iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=KJV">View Verse of the Day</iframe>
-    </noscript>
 </body>
 </html>
